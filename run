@@ -1,0 +1,2 @@
+#!/bin/bash
+/home/pi/sunlights/sunlights 44.000000 -93.000000 0 /home/pi/sunlights/durations.ini 

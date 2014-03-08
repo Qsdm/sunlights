@@ -1,0 +1,1 @@
+ gcc -L/usr/local/lib -I/usr/include -lm -lwiringPi -lcurl  -o sunlights sunriset.c sunlights.c
