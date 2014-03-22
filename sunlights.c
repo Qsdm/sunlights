@@ -22,7 +22,7 @@ print_usage() {
 
 
   /*  This routine handles the on/off of the relay circuit  */
-turnOnLights(int duration,int pin) {
+turnOnRelay(int duration,int pin) {
   wiringPiSetup () ;
   pinMode (pin, OUTPUT) ;
   digitalWrite (pin, HIGH);
@@ -34,8 +34,8 @@ turnOnLights(int duration,int pin) {
 }
 
 
-  /*  This routine handles the on/off of the relay circuit  */
-turnOnLights2(int duration,int zone) {
+  /*  This routine handles the on/off of the OpenSprinkler Zone  */
+turnOnZone(int duration,int zone) {
 	printf("==> Turning Lights ON \n");
 	CURL *curl;
   	CURLcode res;
@@ -55,6 +55,7 @@ turnOnLights2(int duration,int zone) {
               		res = curl_easy_perform(curl);
               		if(res != CURLE_OK) fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
               		else printf("==> Lights OFF \n");
+              		delay((unsigned int) 2*1000*60);
               	}
  
     		/* always cleanup */ 
@@ -156,7 +157,7 @@ int main(int argc, char *argv[]) {
        delay((unsigned int)(interval*3600.0*1000));
        
        /* do */
-       turnOnLights2(duration,pin);
+       turnOnZone(duration,pin);
        printf("==>SUNLIGHTS program complete for today");
   }
 }
